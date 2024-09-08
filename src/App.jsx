@@ -1,10 +1,12 @@
 import { useState, useEffect } from "react";
 import "./App.css";
+import exchangeImage from "./assets/exchange_white.png";
+// import exchangeImage from "./assets/exchange_black.png";
 
 function App() {
   const [count, setCount] = useState(0);
   const scale = 0.8; // Adjust this value to scale the background (e.g., 0.5 for half size, 1 for full size)
-
+  const exhange_image_path = "./assets/exchange_white.png";
   const socialMediaItems = [
     {
       icon: (
@@ -73,7 +75,7 @@ function App() {
 
   return (
     <>
-      <div className="flex items-center justify-center min-h-screen bg-gray-100">
+      <div className="flex items-center justify-center min-h-screen">
         <div
           className="bg-white rounded-[40px] shadow-lg relative overflow-hidden"
           style={{
@@ -81,10 +83,19 @@ function App() {
             height: `${1080 * scale}px`,
           }}
         >
+          {/* Main content image */}
+          <div className="absolute inset-0 z-10">
+            <img
+              src={exchangeImage}
+              alt="Main content"
+              className="w-full h-full object-cover"
+            />
+          </div>
+
           {/* Time display */}
-          <div className="absolute top-0 right-8 bg-gray-800 px-2 py-2 rounded-b-xl z-30">
-            <span className="text-white text-xl font-mono font-normal w-[180px] inline-block text-center">
-              {formatTime(currentTime)}
+          <div className="absolute top-0 right-8 bg-gray-800 px-4 py-2 rounded-b-xl z-30">
+            <span className="text-white text-xl font-mono font-semibold w-[180px] inline-block text-center">
+              {currentTime.toLocaleTimeString()}
             </span>
           </div>
 
@@ -102,7 +113,7 @@ function App() {
           </div>
 
           {/* Footer */}
-          <div className="absolute bottom-0 left-0 right-0">
+          <div className="absolute bottom-0 left-0 right-0 z-20">
             {/* Footer 1 */}
             <div className="bg-gray-800 h-8 w-full absolute bottom-14 left-0 right-0 overflow-hidden">
               <div className="scrolling-text-container">
@@ -112,7 +123,7 @@ function App() {
               </div>
             </div>
             {/* Footer 2 */}
-            <div className="bg-gray-700 h-14 w-full absolute bottom-0 left-0 right-0 flex items-center justify-between">
+            <div className="bg-gray-700 h-16 w-full absolute bottom-0 left-0 right-0 flex items-center justify-between">
               {/* New fun div */}
               {/* <div className="ml-64 bg-gradient-to-r from-purple-500 via-pink-500 to-red-500 p-2 rounded-lg shadow-lg transform  hover:rotate-0 transition-transform duration-300"> */}
 
@@ -139,17 +150,17 @@ function App() {
               </div>
 
               {/* Animated social media content */}
-              <div className="h-10 overflow-hidden w-48 mr-32">
+              <div className="h-12 overflow-hidden w-56 mr-32">
                 <div
                   className={`flex items-center justify-end space-x-3 transition-transform duration-500 ${
                     isTransitioning ? "-translate-y-full" : "translate-y-0"
                   }`}
                 >
-                  <span className="text-3xl">
+                  <span className="text-4xl">
                     {socialMediaItems[currentSocialMediaIndex].icon}
                   </span>
                   <span
-                    className="text-sm font-semibold"
+                    className="text-lg font-semibold"
                     style={{
                       color: socialMediaItems[currentSocialMediaIndex].color,
                     }}
@@ -162,7 +173,7 @@ function App() {
                     isTransitioning ? "translate-y-0" : "translate-y-full"
                   }`}
                 >
-                  <span className="text-3xl">
+                  <span className="text-4xl">
                     {
                       socialMediaItems[
                         (currentSocialMediaIndex + 1) % socialMediaItems.length
@@ -170,7 +181,7 @@ function App() {
                     }
                   </span>
                   <span
-                    className="text-sm font-semibold"
+                    className="text-lg font-semibold"
                     style={{
                       color:
                         socialMediaItems[
