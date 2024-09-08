@@ -93,10 +93,19 @@ function App() {
           </div>
 
           {/* Time display */}
-          <div className="absolute top-0 right-8 bg-gray-800 px-4 py-2 rounded-b-xl z-30">
-            <span className="text-white text-xl font-mono font-semibold w-[180px] inline-block text-center">
-              {currentTime.toLocaleTimeString()}
-            </span>
+          <div className="absolute top-0 right-8 z-30">
+            <div className="bg-gradient-to-r from-orange-500 via-purple-500 to-pink-500 px-0 py-2 rounded-b-2xl shadow-xl relative overflow-hidden">
+              {/* Glass effect overlay */}
+              <div className="absolute inset-0 bg-white bg-opacity-30 backdrop-blur-md rounded-b-2xl"></div>
+              {/* Inner shadow for depth */}
+              <div className="absolute inset-0 shadow-inner rounded-b-2xl"></div>
+              {/* Content */}
+              <div className="relative z-10">
+                <span className="text-gray-800 text-l font-mono font-normal w-[150px] inline-block text-center drop-shadow-lg">
+                  {formatTime(currentTime)}
+                </span>
+              </div>
+            </div>
           </div>
 
           {/* Header Navigation */}
@@ -123,79 +132,93 @@ function App() {
               </div>
             </div>
             {/* Footer 2 */}
-            <div className="bg-gray-700 h-16 w-full absolute bottom-0 left-0 right-0 flex items-center justify-between">
-              {/* New fun div */}
-              {/* <div className="ml-64 bg-gradient-to-r from-purple-500 via-pink-500 to-red-500 p-2 rounded-lg shadow-lg transform  hover:rotate-0 transition-transform duration-300"> */}
+            <div className="bg-gradient-to-r from-orange-500 via-purple-500 to-pink-500 h-16 w-full absolute bottom-0 left-0 right-0 flex items-center justify-between relative">
+              {/* Glass effect overlay */}
+              <div className="absolute inset-0 bg-white bg-opacity-70 backdrop-blur-sm"></div>
 
-              <div className="ml-64  p-2 rounded-lg shadow-lg transform  hover:rotate-0 transition-transform duration-300">
-                <p className="text-white text-sm font-bold leading-tight">
-                  <span className="block">🧠 Learned something today? 🚀</span>
-                  <span className="block"> Smash that 👍</span>
-                  <span className="block">
-                    {" "}
-                    Subscribe 🔔 & Share <i className="fas fa-share-alt"></i>
-                  </span>
-                </p>
-              </div>
-
-              {/* Center rectangle */}
-              <div className="absolute left-1/2 transform -translate-x-1/2 bottom-0 z-10">
-                <div className="px-5 py-2 bg-gray-800 rounded-t-3xl">
-                  <div className="flex justify-center items-center h-full">
-                    <span className="text-white text-lg font-semibold">
-                      1800/2000
+              {/* Content */}
+              <div className="relative z-10 w-full flex items-center justify-between">
+                {/* New fun div */}
+                <div className="ml-64 p-2 rounded-lg transform hover:rotate-0 transition-transform duration-300 ">
+                  <p className="text-gray-800 text-sm font-bold leading-tight drop-shadow-md">
+                    <span className="block">
+                      🧠 Learned something today? 🚀
                     </span>
+                    <span className="block"> Smash that 👍</span>
+                    <span className="block">
+                      Subscribe 🔔 & Share <i className="fas fa-share-alt"></i>
+                    </span>
+                  </p>
+                </div>
+
+                {/* Center rectangle */}
+                <div className="absolute left-1/2 transform -translate-x-1/2 bottom-0 z-10">
+                  <div className="px-5 py-2 bg-gradient-to-r from-orange-500 via-purple-500 to-pink-500 rounded-t-2xl shadow-xl relative overflow-hidden">
+                    {/* Enhanced glass effect overlay */}
+                    <div className="absolute inset-0 bg-white bg-opacity-30 backdrop-blur-md rounded-t-2xl"></div>
+                    {/* Inner shadow for depth */}
+                    <div className="absolute inset-0 shadow-inner rounded-t-2xl"></div>
+                    {/* Content */}
+                    <div className="flex justify-center items-center h-full relative z-10 rounded-t-2xl">
+                      <span className="text-gray-700 text-lg font-semibold drop-shadow-lg">
+                        1800/2000
+                      </span>
+                    </div>
                   </div>
                 </div>
-              </div>
 
-              {/* Animated social media content */}
-              <div className="h-12 overflow-hidden w-56 mr-32">
-                <div
-                  className={`flex items-center justify-end space-x-3 transition-transform duration-500 ${
-                    isTransitioning ? "-translate-y-full" : "translate-y-0"
-                  }`}
-                >
-                  <span className="text-4xl">
-                    {socialMediaItems[currentSocialMediaIndex].icon}
-                  </span>
-                  <span
-                    className="text-lg font-semibold"
-                    style={{
-                      color: socialMediaItems[currentSocialMediaIndex].color,
-                    }}
+                {/* Animated social media content */}
+                <div className="h-12 overflow-hidden w-56 mr-32">
+                  <div
+                    className={`flex items-center justify-end space-x-3 transition-transform duration-500 ${
+                      isTransitioning ? "-translate-y-full" : "translate-y-0"
+                    }`}
                   >
-                    {socialMediaItems[currentSocialMediaIndex].handle}
-                  </span>
-                </div>
-                <div
-                  className={`flex items-center justify-end space-x-3 transition-transform duration-500 ${
-                    isTransitioning ? "translate-y-0" : "translate-y-full"
-                  }`}
-                >
-                  <span className="text-4xl">
-                    {
-                      socialMediaItems[
-                        (currentSocialMediaIndex + 1) % socialMediaItems.length
-                      ].icon
-                    }
-                  </span>
-                  <span
-                    className="text-lg font-semibold"
-                    style={{
-                      color:
+                    <span className="text-4xl drop-shadow-lg">
+                      {socialMediaItems[currentSocialMediaIndex].icon}
+                    </span>
+                    <span
+                      className="text-lg font-semibold drop-shadow-lg"
+                      style={{
+                        color: socialMediaItems[currentSocialMediaIndex].color,
+                        textShadow: "1px 1px 2px rgba(0, 0, 0, 0.3)",
+                      }}
+                    >
+                      {socialMediaItems[currentSocialMediaIndex].handle}
+                    </span>
+                  </div>
+                  <div
+                    className={`flex items-center justify-end space-x-3 transition-transform duration-500 ${
+                      isTransitioning ? "translate-y-0" : "translate-y-full"
+                    }`}
+                  >
+                    <span className="text-4xl drop-shadow-lg">
+                      {
                         socialMediaItems[
                           (currentSocialMediaIndex + 1) %
                             socialMediaItems.length
-                        ].color,
-                    }}
-                  >
-                    {
-                      socialMediaItems[
-                        (currentSocialMediaIndex + 1) % socialMediaItems.length
-                      ].handle
-                    }
-                  </span>
+                        ].icon
+                      }
+                    </span>
+                    <span
+                      className="text-lg font-semibold drop-shadow-lg"
+                      style={{
+                        color:
+                          socialMediaItems[
+                            (currentSocialMediaIndex + 1) %
+                              socialMediaItems.length
+                          ].color,
+                        textShadow: "1px 1px 2px rgba(0, 0, 0, 0.3)",
+                      }}
+                    >
+                      {
+                        socialMediaItems[
+                          (currentSocialMediaIndex + 1) %
+                            socialMediaItems.length
+                        ].handle
+                      }
+                    </span>
+                  </div>
                 </div>
               </div>
             </div>
